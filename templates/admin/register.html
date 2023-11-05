@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Doccure - Register</title>
+
+	<!-- Favicon -->
+	<link href="{%  static 'assets/img/favicon.png' %}" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{%  static 'assets/css/bootstrap.min.css' %}">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="{%  static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+	<link rel="stylesheet" href="{%  static 'assets/plugins/fontawesome/css/all.min.css' %}">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="{%  static 'assets/css/style.css' %}">
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper login-body">
+		<div class="login-wrapper">
+			<div class="container">
+				<div class="loginbox">
+					<div class="login-left">
+						<img class="img-fluid" src="assets/img/logo-white.png" alt="Logo">
+					</div>
+					<div class="login-right">
+						<div class="login-right-wrap">
+							<h1>Register</h1>
+							<p class="account-subtitle">Access to our dashboard</p>
+
+							<!-- Form -->
+							<form action="{% url 'user_insert'%}" method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="u_name"
+										value="{{value.u_name}}">
+									<label class="focus-label" aria-placeholder="Ex. Obaydullah">u_name</label>
+									<div class="row">
+										<small class="text-danger">
+											{{errorMsg.userNameError}}
+										</small>
+									</div>
+								</div>
+
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="first_name"
+										value="{{value.first_name}}">
+									<label class="focus-label" aria-placeholder="Ex. Obaydullah">First Name</label>
+									<small class="text-danger">
+										{{errorMsg.firstNameError}}
+									</small>
+								</div>
+
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="last_name"
+										value="{{value.last_name}}">
+									<label class="focus-label" aria-placeholder="Ex. Hasib">Last Name</label>
+									<small class="text-danger">
+										{{errorMsg.lastNameError}}
+									</small>
+								</div>
+
+
+
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" id="email" name="user_email"
+										value="{{value.email}}">
+									<label class="focus-label" for="email"
+										aria-placeholder="Ex. Hasib@email.com">Email</label>
+									<small class="text-danger">
+										{{errorMsg.emailError}}
+									</small>
+
+								</div>
+
+								<div class="form-group">
+
+									<select class="form-control" id="userRole" name="user_role"
+										value="{{value.user_role}}">
+										<option>Select Role</option>
+										{% for i in role_data %}
+										<option value="{{i.roleID}}">{{i.roleName}}</option>
+										print(i.roleID)
+										print(i)
+										{% endfor %}
+									</select>
+									<label for="userRole" aria-placeholder="Ex. Web Dev">Select User Role</label>
+									<small class="text-danger">
+										{{errorMsg.roleError}}
+									</small>
+								</div>
+
+								<div class="form-group form-focus">
+
+									<input type="file" class="form-control" id="profiePic" name="user_image">
+									<label for="profiePic">Profile picture</label>
+								</div>
+								<br>
+								<div class="form-group form-focus">
+									<div class="input-group">
+										<input type="password" id="password" name="password" class="form-control"
+											value="{{value.password}}" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary" type="button"
+												onclick="togglePasswordVisibility('password')">
+												Show/Hide
+											</button>
+										</div>
+									</div>
+									<label class="form-label" for="password"
+										aria-placeholder="confirmPassword">Password</label>
+									<small class="text-danger">
+										{{errorMsg.passwordError}}
+									</small>
+								</div>
+								<div class="form-group form-focus">
+									<div class="input-group">
+										<input type="password" id="confirmPassword" name="confirmPassword"
+											class="form-control" value="{{value.confirmPassword}}" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary" type="button"
+												onclick="togglePasswordVisibility('confirmPassword')">
+												Show/Hide
+											</button>
+										</div>
+									</div>
+									<label class="form-label" for="confirmPassword"
+										aria-placeholder="confirmPassword">Confirm Password</label>
+									<small class="text-danger">
+										{{errorMsg.passwordError}}
+									</small>
+								</div>
+								<br>
+								<input type="submit" name="" id="" value="Submit"><br>
+
+								<!-- <div class="row form-row social-login">
+										<div class="col-6">
+											<a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
+										</div>
+										<div class="col-6">
+											<a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
+										</div> -->
+						</div>
+						</form>
+						<!-- /Form -->
+
+						<div class="login-or">
+							<span class="or-line"></span>
+							<span class="span-or">or</span>
+						</div>
+
+						<!-- Social Login -->
+						<div class="social-login">
+							<span></span>
+							<a href="#" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" class="google"><i
+									class="fa fa-google"></i></a>
+						</div>
+						<!-- /Social Login -->
+
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">User Information List</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table mb-0">
+											<thead>
+												
+												<tr>
+													<th>Serial No.</th>
+													<th>User ID</th>
+													<th>Username</th>
+													<th>Firstname</th>
+													<th>Lastname</th>
+													<th>Email</th>
+													<th>Role</th>
+													<th>Profile Picture</th>
+												</tr>
+											</thead>
+											<tbody>
+												{%for i in user_data %}
+												<tr class="table-info">
+													<td>{{forloop.counter}}</td>
+													<td>{{i.id}}</td>
+													<td>{{i.uname}}</td>
+													<td>{{i.user_first_name}}</td>
+													<td>{{i.user_last_name}}</td>
+													<td>{{i.user_email}}</td>
+													<td>{{i.user_roleID}}</td>
+													<td><img src="/media/{{i.user_profile_pic}}" alt="404" style="width: 50px; height: 50px;" ></td>
+												</tr>
+												{%endfor %}
+												<!-- <tr class="table-primary">
+													<td>Primary</td>
+													<td>Doe</td>
+													<td>john@example.com</td>
+												</tr>
+												<tr class="table-secondary">
+													<td>Secondary</td>
+													<td>Moe</td>
+													<td>mary@example.com</td>
+												</tr>
+												<tr class="table-success">
+													<td>Success</td>
+													<td>Dooley</td>
+													<td>july@example.com</td>
+												</tr>
+												<tr class="table-danger">
+													<td>Danger</td>
+													<td>Refs</td>
+													<td>bo@example.com</td>
+												</tr>
+												<tr class="table-warning">
+													<td>Warning</td>
+													<td>Activeson</td>
+													<td>act@example.com</td>
+												</tr>
+												<tr class="table-info">
+													<td>Info</td>
+													<td>Activeson</td>
+													<td>act@example.com</td>
+												</tr>
+												<tr class="table-light">
+													<td>Light</td>
+													<td>Activeson</td>
+													<td>act@example.com</td>
+												</tr>
+												<tr class="table-dark">
+													<td>Dark</td>
+													<td>Activeson</td>
+													<td>act@example.com</td>
+												</tr> -->
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+
+</html>
+<script>
+	function togglePasswordVisibility(passwordId) {
+		var passwordInput = document.getElementById(passwordId);
+		if (passwordInput.type === "password") {
+			passwordInput.type = "text";
+		} else {
+			passwordInput.type = "password";
+		}
+	}
+</script>
